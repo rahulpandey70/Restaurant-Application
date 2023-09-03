@@ -1,6 +1,5 @@
 import Card from "./components/Card";
 import Header from "./components/Header";
-import Navbar from "./components/Navbar";
 
 export default function Home() {
 	return (
@@ -12,3 +11,5 @@ export default function Home() {
 		</main>
 	);
 }
+
+// oUcOfCuio3Wo5WIS;
