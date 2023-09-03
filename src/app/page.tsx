@@ -11,5 +11,3 @@ export default function Home() {
 		</main>
 	);
 }
-
-// oUcOfCuio3Wo5WIS;
