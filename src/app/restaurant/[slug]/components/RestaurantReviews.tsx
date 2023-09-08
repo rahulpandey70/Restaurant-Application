@@ -1,3 +1,4 @@
+import Star from "@/app/components/Star";
 import { Review } from "@prisma/client";
 
 interface RestaurantReviewsType {
@@ -28,7 +29,7 @@ const RestaurantReviews = ({ reviews }: RestaurantReviewsType) => {
 							</div>
 							<div className="ml-10 w-5/6">
 								<div className="flex items-center">
-									<div className="flex mr-5">*****</div>
+									<Star reviews={reviews} />
 								</div>
 								<div className="mt-5">
 									<p className="text-lg font-light">{review.text}</p>
