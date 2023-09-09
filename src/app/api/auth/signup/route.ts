@@ -65,7 +65,9 @@ export async function POST(req: Request) {
 	});
 
 	if (errors.length) {
-		return NextResponse.json({ errorMessage: errors[0] });
+		return new NextResponse(JSON.stringify({ errorMessage: errors[0] }), {
+			status: 400,
+		});
 	}
 
 	const userWithEmail = await prisma.user.findUnique({
@@ -75,7 +77,12 @@ export async function POST(req: Request) {
 	});
 
 	if (userWithEmail) {
-		return NextResponse.json({ errorMessage: "Email address already exists" });
+		return new NextResponse(
+			JSON.stringify({ errorMessage: "Email already exists." }),
+			{
+				status: 409,
+			}
+		);
 	}
 
 	const hashedPassword = await bcrypt.hash(response.password, 10);
