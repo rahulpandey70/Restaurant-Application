@@ -52,7 +52,7 @@ export async function POST(req: Request) {
 
 	if (!userWithEmail) {
 		return new NextResponse(
-			JSON.stringify({ errorMessage: "Email is not valid" }),
+			JSON.stringify({ errorMessage: "No account found! Please Signup First" }),
 			{
 				status: 400,
 			}
