@@ -1,4 +1,7 @@
 import axios from "axios";
+import { useContext } from "react";
+import { AuthenticationContext } from "@/app/context/AuthContext";
+import { deleteCookie } from "cookies-next";
 
 interface signInData {
 	email: string;
@@ -6,7 +9,15 @@ interface signInData {
 }
 
 export default function useAuth() {
+	const { loading, error, data, setAuth } = useContext(AuthenticationContext);
+
 	const signIn = async (data: signInData) => {
+		setAuth({
+			loading: true,
+			error: null,
+			data: null,
+		});
+
 		try {
 			const response = await axios.post(
 				"http://localhost:3000/api/auth/signin",
@@ -15,13 +26,61 @@ export default function useAuth() {
 					password: data.password,
 				}
 			);
-			console.log(response.data);
-		} catch (error) {
-			console.log(error);
+			setAuth({
+				loading: false,
+				error: null,
+				data: response.data,
+			});
+		} catch (error: any) {
+			setAuth({
+				loading: false,
+				error: error.response.data.errorMessage,
+				data: null,
+			});
 		}
 	};
 
-	const signUp = (data: any) => {};
+	const signUp = async (data: any) => {
+		setAuth({
+			loading: true,
+			error: null,
+			data: null,
+		});
 
-	return { signIn, signUp };
+		try {
+			const response = await axios.post(
+				"http://localhost:3000/api/auth/signup",
+				{
+					firstName: data.firstName,
+					lastName: data.lastName,
+					email: data.email,
+					city: data.city,
+					phone: data.phone,
+					password: data.password,
+				}
+			);
+			setAuth({
+				loading: false,
+				error: null,
+				data: response.data,
+			});
+		} catch (error: any) {
+			setAuth({
+				loading: false,
+				error: error.response.data.errorMessage,
+				data: null,
+			});
+		}
+	};
+
+	const logout = () => {
+		deleteCookie("jwt");
+		setAuth({
+			loading: false,
+			error: null,
+			data: null,
+		});
+	};
+
+	return { signIn, signUp, logout };
 }

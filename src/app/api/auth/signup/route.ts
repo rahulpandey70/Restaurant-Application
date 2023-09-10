@@ -87,7 +87,7 @@ export async function POST(req: Request) {
 
 	const hashedPassword = await bcrypt.hash(response.password, 10);
 
-	const user = await prisma.user.create({
+	const newUser = await prisma.user.create({
 		data: {
 			first_name: response.firstName,
 			last_name: response.lastName,
@@ -108,5 +108,23 @@ export async function POST(req: Request) {
 		.setExpirationTime("24h")
 		.sign(signature);
 
-	return NextResponse.json({ response: user, token });
+	const res = NextResponse.json(
+		{
+			id: newUser.id,
+			firstName: newUser.first_name,
+			lastName: newUser.last_name,
+			email: newUser.email,
+			city: newUser.city,
+			phone: newUser.phone,
+		},
+		{ status: 201 }
+	);
+
+	res.cookies.set({
+		name: "jwt",
+		value: token,
+		maxAge: 60 * 60 * 24,
+	});
+
+	return res;
 }

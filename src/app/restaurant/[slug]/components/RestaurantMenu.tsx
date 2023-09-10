@@ -15,7 +15,7 @@ const RestaurantMenu = ({ items }: RestaurantMenuProps) => {
 				{items.length ? (
 					<div className="flex flex-wrap justify-between">
 						{items.map((item: Item) => (
-							<RestaurantMenuCard item={item} />
+							<RestaurantMenuCard item={item} key={item.id} />
 						))}
 					</div>
 				) : (

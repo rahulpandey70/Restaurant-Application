@@ -88,7 +88,9 @@ const Search = async ({ searchParams }: SearchProps) => {
 				/>
 				<div className="w-5/6">
 					{restaurants.length ? (
-						restaurants.map((restaurant) => <Card restaurant={restaurant} />)
+						restaurants.map((restaurant) => (
+							<Card restaurant={restaurant} key={restaurant.id} />
+						))
 					) : (
 						<p>Sorry, No Restaurant Found At This Location.</p>
 					)}

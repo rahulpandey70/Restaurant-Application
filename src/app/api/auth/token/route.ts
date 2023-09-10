@@ -1,6 +1,5 @@
 import { NextResponse } from "next/server";
 import { headers } from "next/headers";
-import * as jose from "jose";
 import jwt from "jsonwebtoken";
 import { PrismaClient } from "@prisma/client";
 
@@ -27,5 +26,12 @@ export async function GET(req: Request) {
 		},
 	});
 
-	return NextResponse.json({ message: singleUser });
+	return NextResponse.json({
+		id: singleUser?.id,
+		firstName: singleUser?.first_name,
+		lastName: singleUser?.last_name,
+		email: singleUser?.email,
+		city: singleUser?.city,
+		phone: singleUser?.phone,
+	});
 }

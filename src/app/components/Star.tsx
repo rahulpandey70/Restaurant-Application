@@ -24,8 +24,8 @@ const Star = ({ reviews }: StarProps) => {
 			} else stars.push(emptyStar);
 		}
 
-		return stars.map((star) => (
-			<Image src={star} alt="" className="w-4 h-4 mr-1" />
+		return stars.map((star, idx) => (
+			<Image src={star} alt="" key={idx} className="w-4 h-4 mr-1" />
 		));
 	};
 

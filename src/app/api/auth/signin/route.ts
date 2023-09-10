@@ -44,13 +44,13 @@ export async function POST(req: Request) {
 		});
 	}
 
-	const userWithEmail = await prisma.user.findUnique({
+	const filteredUser = await prisma.user.findUnique({
 		where: {
 			email: response.email,
 		},
 	});
 
-	if (!userWithEmail) {
+	if (!filteredUser) {
 		return new NextResponse(
 			JSON.stringify({ errorMessage: "No account found! Please Signup First" }),
 			{
@@ -61,7 +61,7 @@ export async function POST(req: Request) {
 
 	const isMatch = await bcrypt.compare(
 		response.password,
-		userWithEmail.password
+		filteredUser.password
 	);
 
 	if (!isMatch) {
@@ -83,5 +83,22 @@ export async function POST(req: Request) {
 		.setExpirationTime("24h")
 		.sign(signature);
 
-	return NextResponse.json({ token });
+	const res = NextResponse.json(
+		{
+			id: filteredUser.id,
+			firstName: filteredUser.first_name,
+			lastName: filteredUser.last_name,
+			email: filteredUser.email,
+			city: filteredUser.city,
+			phone: filteredUser.phone,
+		},
+		{ status: 200 }
+	);
+	res.cookies.set({
+		name: "jwt",
+		value: token,
+		maxAge: 60 * 60 * 24,
+	});
+
+	return res;
 }

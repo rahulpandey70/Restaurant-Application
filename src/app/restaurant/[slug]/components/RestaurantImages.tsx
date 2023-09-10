@@ -9,8 +9,13 @@ const RestaurantImages = ({ images }: RestaurantImagesProps) => {
 				{images.length} photo{images.length > 1 ? "s" : ""}
 			</h1>
 			<div className="flex flex-wrap">
-				{images.map((image: string) => (
-					<img className="w-56 h-44 mr-1 mb-1" src={image} alt={image} />
+				{images.map((image: string, idx) => (
+					<img
+						className="w-56 h-44 mr-1 mb-1"
+						src={image}
+						alt={image}
+						key={idx}
+					/>
 				))}
 			</div>
 		</div>
