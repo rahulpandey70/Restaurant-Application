@@ -67,6 +67,7 @@ const Restaurant = async ({ params }: Props) => {
 			<ReservationCard
 				openTime={restaurant.open_time}
 				closeTime={restaurant.closing_time}
+				slug={restaurant.slug}
 			/>
 		</>
 	);
