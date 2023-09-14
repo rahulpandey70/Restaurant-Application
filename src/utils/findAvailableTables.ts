@@ -15,8 +15,6 @@ export const findAvailableTables = async ({
 			id: number;
 			seats: number;
 			restaurant_id: number;
-			created_at: Date;
-			updated_at: Date;
 		}[];
 		open_time: string;
 		closing_time: string;

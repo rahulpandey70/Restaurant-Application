@@ -1,4 +1,3 @@
-import { times } from "@/data";
 import { findAvailableTables } from "@/utils/findAvailableTables";
 import { PrismaClient } from "@prisma/client";
 import { NextRequest, NextResponse } from "next/server";
