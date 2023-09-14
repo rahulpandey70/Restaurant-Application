@@ -1,11 +1,14 @@
 "use client";
 
+import { Time } from "@/utils/convertToDisplayTime";
 import axios from "axios";
 import { useState } from "react";
 
 export default function useAvailabilities() {
 	const [loading, setLoading] = useState(false);
-	const [data, setData] = useState();
+	const [data, setData] = useState<
+		{ time: Time; available: boolean }[] | null
+	>();
 	const [error, setError] = useState<boolean | string>(false);
 
 	const fetchRestaurant = async ({

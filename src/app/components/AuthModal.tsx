@@ -63,47 +63,39 @@ export default function AuthModal({ isSignIn }: { isSignIn: boolean }) {
 				aria-describedby="modal-modal-description"
 			>
 				<Box sx={style}>
-					{loading ? (
-						<div className="py-24 p-2 flex justify-center">
-							<CircularProgress />
+					<div className="p-2">
+						{error ? (
+							<Alert severity="error" className="mb-4 flex justify-center">
+								{error}
+							</Alert>
+						) : null}
+						<div className="uppercase font-bold text-center pb-2 border-b mb-2">
+							<p className="text-sm">
+								{renderContent("Sign in", "Create an account")}
+							</p>
 						</div>
-					) : (
-						<div className="p-2">
-							{error ? (
-								<Alert severity="error" className="mb-4 flex justify-center">
-									{error}
-								</Alert>
-							) : null}
-							<div className="uppercase font-bold text-center pb-2 border-b mb-2">
-								<p className="text-sm">
-									{renderContent("Sign in", "Create an account")}
-								</p>
-							</div>
-							<div className="m-auto">
-								<h2 className="text-2xl font-light text-center">
-									{renderContent("Log Into Your Account", "Create New Account")}
-								</h2>
-							</div>
-							<AuthModalInput
-								register={register}
-								errors={errors}
-								isSignIn={isSignIn}
-							/>
-							<button
-								className="uppercase bg-red-600 w-full text-white p-3 rounded text-sm mb-5 disabled:bg-gray-400"
-								onClick={handleSubmit(onSubmit)}
-							>
-								{/* {loading ? (
-								<div className="h-0.5 flex justify-center">
-									<CircularProgress />
-								</div>
+						<div className="m-auto">
+							<h2 className="text-2xl font-light text-center">
+								{renderContent("Log Into Your Account", "Create New Account")}
+							</h2>
+						</div>
+						<AuthModalInput
+							register={register}
+							errors={errors}
+							isSignIn={isSignIn}
+						/>
+						<button
+							className="uppercase bg-red-600 rounded w-full px-4 text-white font-bold h-16 disabled:bg-gray-400"
+							onClick={handleSubmit(onSubmit)}
+							disabled={loading}
+						>
+							{loading ? (
+								<CircularProgress color="inherit" />
 							) : (
 								<>{renderContent("Sign In", "Create an account")}</>
-							)} */}
-								{renderContent("Sign In", "Create an account")}
-							</button>
-						</div>
-					)}
+							)}
+						</button>
+					</div>
 				</Box>
 			</Modal>
 		</div>

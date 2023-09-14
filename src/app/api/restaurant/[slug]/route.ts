@@ -110,15 +110,5 @@ export async function GET(
 			return afterOpeningTime && beforeClosingTime;
 		});
 
-	return NextResponse.json(
-		{
-			searchedTimes,
-			bookings,
-			bookingOnTableObj,
-			restaurantTable,
-			tableList,
-			availabilities,
-		},
-		{ status: 200 }
-	);
+	return NextResponse.json(availabilities, { status: 200 });
 }
