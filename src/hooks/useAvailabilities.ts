@@ -25,7 +25,7 @@ export default function useAvailabilities() {
 		try {
 			setLoading(true);
 			const response = await axios.get(
-				`http://localhost:3000/api/restaurant/${slug}`,
+				`http://localhost:3000/api/restaurant/${slug}/availability`,
 				{
 					params: {
 						partySize,
