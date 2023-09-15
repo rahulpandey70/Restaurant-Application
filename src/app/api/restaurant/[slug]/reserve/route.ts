@@ -157,5 +157,5 @@ export async function POST(
 		data: bookingsOnTableData,
 	});
 
-	return NextResponse.json({ tableCount, tablesToBook }, { status: 200 });
+	return NextResponse.json({ booking }, { status: 200 });
 }
