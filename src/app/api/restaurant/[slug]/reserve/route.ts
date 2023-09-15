@@ -113,21 +113,21 @@ export async function POST(
 			if (tableCount[4].length) {
 				tablesToBook.push(tableCount[4][0]);
 				tableCount[4].shift();
-				seatRemaining - 4;
+				seatRemaining = seatRemaining - 4;
 			} else {
 				tablesToBook.push(tableCount[2][0]);
 				tableCount[2].shift();
-				seatRemaining - 2;
+				seatRemaining = seatRemaining - 2;
 			}
 		} else {
 			if (tableCount[2].length) {
 				tablesToBook.push(tableCount[2][0]);
 				tableCount[2].shift();
-				seatRemaining - 2;
+				seatRemaining = seatRemaining - 2;
 			} else {
 				tablesToBook.push(tableCount[4][0]);
 				tableCount[4].shift();
-				seatRemaining - 4;
+				seatRemaining = seatRemaining - 4;
 			}
 		}
 	}
