@@ -60,7 +60,7 @@ export const findAvailableTables = async ({
 
 	const tableList = searchedTimes.map((time) => {
 		return {
-			date: new Date(`${bookingTime}T${time}`),
+			date: new Date(`${bookingDate}T${time}`),
 			time,
 			tables: restaurantTable,
 		};
