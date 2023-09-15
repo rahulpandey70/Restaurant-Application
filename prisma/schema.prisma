@@ -94,8 +94,8 @@ model Booking {
   booking_phone    String
   booker_firstname String
   booker_lastname  String
-  booker_occession String
-  booker_request   String
+  booker_occasion  String?
+  booker_request   String?
   restaurant_id    Int
   restaurant       Restaurant       @relation(fields: [restaurant_id], references: [id])
   created_at       DateTime         @default(now())
