@@ -4,6 +4,7 @@ import { partySize, times } from "@/data";
 import useAvailabilities from "@/hooks/useAvailabilities";
 import { convertToDisplayTime } from "@/utils/convertToDisplayTime";
 import { CircularProgress } from "@mui/material";
+import Link from "next/link";
 import { useRef, useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
@@ -123,9 +124,12 @@ const ReservationCard = ({
 						<div className="flex flex-wrap mt-2">
 							{data.map((time) => {
 								return time.available ? (
-									<div className="bg-red-600 cursor-pointer p-2 w-24 text-center text-white mb-3 mr-3 rounded">
+									<Link
+										href={`/reservation/${slug}?partySize=${partySizeRef.current?.value}&date=${date}&time=${timeRef.current?.value}`}
+										className="bg-red-600 cursor-pointer p-2 w-24 text-center text-white mb-3 mr-3 rounded"
+									>
 										{convertToDisplayTime(time.time)}
-									</div>
+									</Link>
 								) : (
 									<div className="bg-gray-300 p-2 w-24 mb-3 mr-3 rounded"></div>
 								);

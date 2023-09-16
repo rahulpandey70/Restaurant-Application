@@ -17,7 +17,7 @@ export const findAvailableTables = async ({
 			restaurant_id: number;
 		}[];
 		open_time: string;
-		closing_time: string;
+		close_time: string;
 	};
 }) => {
 	const searchedTimes = times.find((t) => {

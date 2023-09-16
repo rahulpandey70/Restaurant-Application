@@ -24,7 +24,7 @@ interface RestaurantDataType {
 	slug: string;
 	reviews: Review[];
 	open_time: string;
-	closing_time: string;
+	close_time: string;
 }
 
 const fetchRestaurant = async (slug: string): Promise<RestaurantDataType> => {
@@ -40,7 +40,7 @@ const fetchRestaurant = async (slug: string): Promise<RestaurantDataType> => {
 			slug: true,
 			reviews: true,
 			open_time: true,
-			closing_time: true,
+			close_time: true,
 		},
 	});
 
@@ -66,7 +66,7 @@ const Restaurant = async ({ params }: Props) => {
 			</div>
 			<ReservationCard
 				openTime={restaurant.open_time}
-				closeTime={restaurant.closing_time}
+				closeTime={restaurant.close_time}
 				slug={restaurant.slug}
 			/>
 		</>

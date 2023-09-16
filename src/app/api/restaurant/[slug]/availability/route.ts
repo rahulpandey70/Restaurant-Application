@@ -27,7 +27,7 @@ export async function GET(
 		select: {
 			tables: true,
 			open_time: true,
-			closing_time: true,
+			close_time: true,
 		},
 	});
 
@@ -67,7 +67,7 @@ export async function GET(
 				new Date(`${bookingDate}T${restaurant?.open_time}`);
 			const beforeClosingTime =
 				new Date(`${bookingDate}T${availability.time}`) <=
-				new Date(`${bookingDate}T${restaurant?.closing_time}`);
+				new Date(`${bookingDate}T${restaurant?.close_time}`);
 
 			return afterOpeningTime && beforeClosingTime;
 		});

@@ -39,7 +39,7 @@ export async function POST(
 			id: true,
 			tables: true,
 			open_time: true,
-			closing_time: true,
+			close_time: true,
 		},
 	});
 
@@ -56,7 +56,7 @@ export async function POST(
 		new Date(`${bookingDate}T${bookingTime}`) <
 			new Date(`${bookingDate}T${restaurant.open_time}`) ||
 		new Date(`${bookingDate}T${bookingTime}`) >
-			new Date(`${bookingDate}T${restaurant.closing_time}`)
+			new Date(`${bookingDate}T${restaurant.close_time}`)
 	) {
 		return NextResponse.json(
 			{
@@ -135,12 +135,12 @@ export async function POST(
 	const booking = await prisma.booking.create({
 		data: {
 			number_of_people: parseInt(partySize),
-			booking_email: bookerEmail,
-			booker_firstname: bookerFirstName,
-			booker_lastname: bookerLastName,
+			booker_email: bookerEmail,
+			booker_first_name: bookerFirstName,
+			booker_last_name: bookerLastName,
 			booker_occasion: bookerOccasion,
 			booker_request: bookerRequest,
-			booking_phone: bookerPhone,
+			booker_phone: bookerPhone,
 			booking_time: new Date(`${bookingDate}T${bookingTime}`),
 			restaurant_id: restaurant.id,
 		},
