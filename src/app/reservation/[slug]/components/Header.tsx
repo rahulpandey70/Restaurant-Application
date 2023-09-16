@@ -21,7 +21,7 @@ const Header = ({
 					<div className="flex mt-3">
 						<p className="mr-6">{format(new Date(date), "ccc LLL d")}</p>
 						<p className="mr-6">{convertToDisplayTime(time as Time)}</p>
-						<p className="mr-6">{partySize}</p>
+						<p className="mr-6">{partySize} People</p>
 					</div>
 				</div>
 			</div>

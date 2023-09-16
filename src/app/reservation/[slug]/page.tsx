@@ -48,7 +48,7 @@ const Reservation = async ({
 		<div className="border-t h-screen">
 			<div className="py-9 w-3/5 m-auto">
 				<Header searchParams={searchParams} restaurant={restaurant} />
-				<Form />
+				<Form searchParams={searchParams} slug={params.slug} />
 			</div>
 		</div>
 	);

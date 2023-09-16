@@ -5,12 +5,12 @@ import { NextRequest, NextResponse } from "next/server";
 const prisma = new PrismaClient();
 
 interface BookingData {
-	bookerEmail: string;
-	bookerPhone: string;
-	bookerFirstName: string;
-	bookerLastName: string;
-	bookerOccasion: string;
-	bookerRequest: string;
+	firstName: string;
+	lastName: string;
+	phone: string;
+	email: string;
+	occasion: string;
+	request: string;
 }
 
 export async function POST(
@@ -22,14 +22,8 @@ export async function POST(
 	const bookingTime = req.nextUrl.searchParams.get("time") as string;
 	const bookingDate = req.nextUrl.searchParams.get("date") as string;
 
-	const {
-		bookerEmail,
-		bookerFirstName,
-		bookerLastName,
-		bookerOccasion,
-		bookerPhone,
-		bookerRequest,
-	}: BookingData = await req.json();
+	const { firstName, lastName, email, phone, occasion, request }: BookingData =
+		await req.json();
 
 	const restaurant = await prisma.restaurant.findUnique({
 		where: {
@@ -135,12 +129,12 @@ export async function POST(
 	const booking = await prisma.booking.create({
 		data: {
 			number_of_people: parseInt(partySize),
-			booker_email: bookerEmail,
-			booker_first_name: bookerFirstName,
-			booker_last_name: bookerLastName,
-			booker_occasion: bookerOccasion,
-			booker_request: bookerRequest,
-			booker_phone: bookerPhone,
+			booker_first_name: firstName,
+			booker_last_name: lastName,
+			booker_email: email,
+			booker_phone: phone,
+			booker_occasion: occasion,
+			booker_request: request,
 			booking_time: new Date(`${bookingDate}T${bookingTime}`),
 			restaurant_id: restaurant.id,
 		},
